@@ -124,11 +124,11 @@ class TerminalSceneDelegate: UIResponder, UIWindowSceneDelegate, IdentifiableSce
 		let infoPlist = Bundle.main.infoDictionary!
 		let appVersion = infoPlist["CFBundleShortVersionString"] as! String
 
-		let alertController = UIAlertController(title: "Update Available",
-																						message: "Version \(response.versionString) is available to install. You’re currently using version \(appVersion).",
+		let alertController = UIAlertController(title: .localize("Update Available"),
+																						message: String(format: .localize("UPDATE_AVAILABLE_MESSAGE"), response.versionString, appVersion),
 																						preferredStyle: .alert)
-		alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-		alertController.addAction(UIAlertAction(title: "Download", style: .default, handler: { _ in
+		alertController.addAction(UIAlertAction(title: .localize("Dismiss"), style: .cancel, handler: nil))
+		alertController.addAction(UIAlertAction(title: .localize("Download"), style: .default, handler: { _ in
 			UIApplication.shared.open(URL(string: response.url)!, options: [:], completionHandler: nil)
 		}))
 		viewController.present(alertController, animated: true, completion: nil)

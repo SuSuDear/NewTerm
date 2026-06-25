@@ -99,8 +99,8 @@ enum ToolbarKey: Hashable {
                                                                  glyph: .localize("Del"),
                                                                  imageName: .deleteRight,
                                                                  preferredStyle: .icons)
-		case .copy:      return Key(label: "Copy", minWidth: 40)
-		case .paste:     return Key(label: "Paste", minWidth: 40)
+		case .copy:      return Key(label: .localize("Copy"), minWidth: 40)
+		case .paste:     return Key(label: .localize("Paste"), minWidth: 40)
 
 		// Primary - trailing
 		case .up:       return Key(label: .localize("Up"),

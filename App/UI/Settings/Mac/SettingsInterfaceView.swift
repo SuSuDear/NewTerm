@@ -78,7 +78,7 @@ struct SettingsInterfaceView: View {
 			Text("Default (SF Mono)")
 				.id("SF Mono")
 			HStack {
-				Text("Custom: \(preferences.fontName)")
+				Text(String(format: .localize("Custom: %@"), preferences.fontName))
 				Button(action: {},
 							 label: { Label("Choose Font…", systemImage: "textformat").labelStyle(TitleOnlyLabelStyle()) })
 			}

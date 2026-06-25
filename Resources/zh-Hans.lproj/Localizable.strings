@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>TERMINAL</key>
+	<string>终端</string>
+
+	<key>SETTINGS</key>
+	<string>设置</string>
+
+	<key>ABOUT</key>
+	<string>关于 NewTerm</string>
+
+	<key>PASSWORD_MANAGER</key>
+	<string>密码管理器</string>
+
+	<key>TERMINAL_LAUNCH_FAILED</key>
+	<string>Shell 进程意外退出。</string>
+
+	<key>TERMINAL_LAUNCH_FAILED_TITLE</key>
+	<string>无法启动终端，因为 Shell 进程意外退出。</string>
+
+	<key>TERMINAL_LAUNCH_FAILED_BODY</key>
+	<string>有关更多详细信息，请参阅终端窗口中的错误信息。
+你可能需要检查启动脚本或重新安装核心软件包来解决此问题。</string>
+
+	<key>PROCESS_COMPLETED_TITLE</key>
+	<string>会话已结束</string>
+
+	<key>NEW_TAB</key>
+	<string>新建标签页</string>
+
+	<key>CLOSE_TAB</key>
+	<string>关闭标签页</string>
+
+	<key>NEW_WINDOW</key>
+	<string>新建窗口</string>
+
+	<key>CLOSE_WINDOW</key>
+	<string>关闭窗口</string>
+
+	<key>CLEAR_TERMINAL</key>
+	<string>清空终端</string>
+
+	<key>SHOW_PREVIOUS_TAB</key>
+	<string>显示上一个标签页</string>
+
+	<key>SHOW_NEXT_TAB</key>
+	<string>显示下一个标签页</string>
+
+	<key>SPLIT_HORIZONTALLY</key>
+	<string>水平分屏</string>
+
+	<key>SPLIT_VERTICALLY</key>
+	<string>垂直分屏</string>
+
+	<key>LOCALE_SYSTEM</key>
+	<string>系统语言：%@</string>
+
+	<key>General</key>
+	<string>通用</string>
+
+	<key>Update Available</key>
+	<string>有可用更新</string>
+
+	<!-- Alert message displayed when an app update is available. The first placeholder is the available version, the second is the current version. -->
+	<key>UPDATE_AVAILABLE_MESSAGE</key>
+	<string>版本 %@ 可供安装。你当前使用的是版本 %@。</string>
+
+	<key>Dismiss</key>
+	<string>关闭</string>
+
+	<key>Download</key>
+	<string>下载</string>
+
+	<key>Settings</key>
+	<string>设置</string>
+
+	<key>Font</key>
+	<string>字体</string>
+
+	<key>On AC Power</key>
+	<string>接入电源时</string>
+
+	<key>Refresh Rate</key>
+	<string>刷新率</string>
+
+	<key>The Performance setting is recommended.</key>
+	<string>建议使用“性能”设置。</string>
+
+	<key>On Battery</key>
+	<string>使用电池时</string>
+
+	<!-- Footer explaining the battery refresh rate setting. Placeholder is the device model. -->
+	<key>PERFORMANCE_BATTERY_FOOTER</key>
+	<string>较低的刷新率可延长 %@ 的电池续航，但可能会让终端显示感觉迟缓。
+建议使用“性能”设置。</string>
+
+	<key>Preserve battery life by switching to Power Saver when Low Power Mode is enabled.</key>
+	<string>启用低电量模式时切换到省电模式以延长电池续航。</string>
+
+	<key>Performance</key>
+	<string>性能</string>
+
+	<key>NewTerm is made available for free thanks to generous support from these fans:</key>
+	<string>感谢这些粉丝的慷慨支持，NewTerm 才能免费提供：</string>
+
+	<key>License &amp; Acknowledgements</key>
+	<string>许可证与致谢</string>
+
+	<key>License &amp; Acknowlegements</key>
+	<string>许可证与致谢</string>
+
+	<key>This is a beta — thanks for trying it out! If you find any issues, please let us know.</key>
+	<string>这是测试版——感谢你的试用！如果发现任何问题，请告诉我们。</string>
+
+	<key>Email Support</key>
+	<string>邮件支持</string>
+
+	<key>Support NewTerm Development</key>
+	<string>支持 NewTerm 开发</string>
+
+	<key>Share NewTerm</key>
+	<string>分享 NewTerm</string>
+
+	<key>Check out NewTerm, a modern, super fast terminal app for iOS and macOS! 🧑‍💻</key>
+	<string>来看看 NewTerm，一款适用于 iOS 和 macOS 的现代化超快终端应用！🧑‍💻</string>
+
+	<key>Dedicated to Dennis Bednarz (2000 – 2019), a friend and visionary of the iOS community taken from us too soon.</key>
+	<string>献给 Dennis Bednarz（2000–2019），他是 iOS 社区的朋友与远见者，却过早离开了我们。</string>
+
+	<key>System Language</key>
+	<string>系统语言</string>
+
+	<key>Locale</key>
+	<string>区域设置</string>
+
+	<key>NewTerm will ask terminal programs to use this locale. Not all programs support this. This will not apply to currently open tabs, and may be overridden by shell startup scripts.</key>
+	<string>NewTerm 会要求终端程序使用此区域设置。并非所有程序都支持。此设置不会应用到当前已打开的标签页，并且可能会被 Shell 启动脚本覆盖。</string>
+
+	<key>Language</key>
+	<string>语言</string>
+
+	<key>Advanced</key>
+	<string>高级</string>
+
+	<key>Preview</key>
+	<string>预览</string>
+
+	<key>Theme</key>
+	<string>主题</string>
+
+	<key>Default (SF Mono)</key>
+	<string>默认（SF Mono）</string>
+
+	<key>Custom: %@</key>
+	<string>自定义：%@</string>
+
+	<key>Note: You currently need to restart the app to have theme updates apply.</key>
+	<string>注意：目前需要重启应用才能应用主题更新。</string>
+
+	<key>Interface</key>
+	<string>界面</string>
+
+	<key>Bell</key>
+	<string>响铃</string>
+
+	<key>When a terminal application needs to notify you of something, it rings the bell.</key>
+	<string>当终端应用需要通知你时，会触发响铃。</string>
+
+	<key>Settings Sync</key>
+	<string>设置同步</string>
+
+	<key>Keep your NewTerm settings in sync between your Mac, iPhone, and iPad by selecting iCloud sync. If you just want to keep a backup with a service such as Dropbox, select custom folder sync.</key>
+	<string>选择 iCloud 同步，可在 Mac、iPhone 和 iPad 之间同步 NewTerm 设置。如果只想使用 Dropbox 等服务保留备份，请选择自定义文件夹同步。</string>
+
+	<key>Sync app settings:</key>
+	<string>同步应用设置：</string>
+
+	<key>Don’t sync</key>
+	<string>不同步</string>
+
+	<key>via iCloud</key>
+	<string>通过 iCloud</string>
+
+	<key>via custom folder</key>
+	<string>通过自定义文件夹</string>
+
+	<key>Browse</key>
+	<string>浏览</string>
+
+	<key>Not installed. Tap to download.</key>
+	<string>未安装。轻点下载。</string>
+
+	<!-- Label for the font size stepper. Placeholder is the font size. -->
+	<key>FONT_SIZE_FORMAT</key>
+	<string>字体大小：%d</string>
+
+	<key>Terminal</key>
+	<string>终端</string>
+
+	<key>Keyboard</key>
+	<string>键盘</string>
+
+	<key>Touch and hold the Space bar, then drag around the keyboard to move the cursor.</key>
+	<string>按住空格键，然后在键盘上拖动即可移动光标。</string>
+
+	<key>Arrow Keys</key>
+	<string>方向键</string>
+
+	<key>Trackpad Sensitivity</key>
+	<string>触控板灵敏度</string>
+
+	<key>Custom Background</key>
+	<string>自定义背景</string>
+
+	<key>Import a custom wallpaper for the terminal background.</key>
+	<string>导入自定义壁纸作为终端背景。</string>
+
+	<key>Import Wallpaper</key>
+	<string>导入壁纸</string>
+
+	<key>Background Opacity</key>
+	<string>背景不透明度</string>
+
+	<key>Remove Wallpaper</key>
+	<string>移除壁纸</string>
+
+	<key>About</key>
+	<string>关于</string>
+
+	<key>Built in Themes</key>
+	<string>内置主题</string>
+
+	<key>Control</key>
+	<string>Control</string>
+
+	<key>Ctrl</key>
+	<string>Ctrl</string>
+
+	<key>Escape</key>
+	<string>Escape</string>
+
+	<key>Esc</key>
+	<string>Esc</string>
+
+	<key>Tab</key>
+	<string>Tab</string>
+
+	<key>More</key>
+	<string>更多</string>
+
+	<key>Delete Forward</key>
+	<string>向前删除</string>
+
+	<key>Del</key>
+	<string>Del</string>
+
+	<key>Up</key>
+	<string>上</string>
+
+	<key>Down</key>
+	<string>下</string>
+
+	<key>Left</key>
+	<string>左</string>
+
+	<key>Right</key>
+	<string>右</string>
+
+	<key>Home</key>
+	<string>Home</string>
+
+	<key>End</key>
+	<string>End</string>
+
+	<key>Page Up</key>
+	<string>上一页</string>
+
+	<key>PgUp</key>
+	<string>PgUp</string>
+
+	<key>Page Down</key>
+	<string>下一页</string>
+
+	<key>PgDn</key>
+	<string>PgDn</string>
+
+	<key>Function Keys</key>
+	<string>功能键</string>
+
+	<key>Fn</key>
+	<string>Fn</string>
+
+	<key>has bell</key>
+	<string>有响铃</string>
+
+	<key>has activity</key>
+	<string>有活动</string>
+
+	<key>Low Power</key>
+	<string>省电</string>
+
+	<key>Balanced</key>
+	<string>平衡</string>
+
+	<key>Make beep sound</key>
+	<string>播放提示音</string>
+
+	<key>Make haptic vibration</key>
+	<string>触感振动</string>
+
+	<key>Show heads-up display</key>
+	<string>显示悬浮提示</string>
+
+	<key>Butterfly</key>
+	<string>蝶式</string>
+
+	<key>Scissor</key>
+	<string>剪刀式</string>
+
+	<key>Classic</key>
+	<string>经典</string>
+
+	<key>Vim</key>
+	<string>Vim</string>
+
+	<key>Vim Inverted</key>
+	<string>Vim 反向</string>
+
+	<key>Off</key>
+	<string>关闭</string>
+
+	<key>Low</key>
+	<string>低</string>
+
+	<key>Medium</key>
+	<string>中</string>
+
+	<key>High</key>
+	<string>高</string>
+
+	<key>Copy</key>
+	<string>复制</string>
+
+	<key>Paste</key>
+	<string>粘贴</string>
+
+	<key>Power Saver</key>
+	<string>省电</string>
+
+	<key>Speed Demon</key>
+	<string>极速</string>
+
+	<key>Reduce Performance in Low Power Mode</key>
+	<string>低电量模式下降低性能</string>
+
+</dict>
+</plist>

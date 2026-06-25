@@ -44,7 +44,7 @@ struct SettingsFontView: View {
 #if !targetEnvironment(macCatalyst)
 				PreferencesGroup {
 					Stepper(value: $preferences.fontSize, in: 10...20, step: 1) {
-						Text("Font Size: \(Int(preferences.fontSize))")
+						Text(String(format: .localize("FONT_SIZE_FORMAT"), Int(preferences.fontSize)))
 					}
 				}
 #endif

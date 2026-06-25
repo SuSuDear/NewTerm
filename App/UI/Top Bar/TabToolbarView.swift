@@ -82,20 +82,20 @@ struct TabToolbarView: View {
 						 label: { Image(systemName: "key.fill") })
 				.squareFrame(sideLength: Self.height)
 				.padding(.horizontal, 3)
-				.accessibilityLabel("Password Manager")
+				.accessibilityLabel(String.localize("PASSWORD_MANAGER"))
 
 			Button(action: { state.delegate?.openSettings() },
 						 label: { Image(systemName: .gear) })
 				.squareFrame(sideLength: Self.height)
 				.padding(.horizontal, 3)
-				.accessibilityLabel("Settings")
+				.accessibilityLabel(String.localize("SETTINGS"))
 
 			Button(action: { state.delegate?.addTerminal() },
 						 label: { Image(systemName: .plus) })
 				.squareFrame(sideLength: Self.height)
 				.padding(.horizontal, 3)
 				.padding(.trailing, 3)
-				.accessibilityLabel("New Tab")
+				.accessibilityLabel(String.localize("NEW_TAB"))
 		}
 			.foregroundColor(.accentColor)
 			.font(.system(size: 17 * 0.9, weight: .medium))
@@ -140,7 +140,7 @@ struct TabToolbarItemView: View {
 				}
 			})
 				.squareFrame(sideLength: height)
-				.accessibilityLabel("Close Tab")
+				.accessibilityLabel(String.localize("CLOSE_TAB"))
 
 			Text(terminal.title)
 				.font(.system(size: 12, weight: .semibold))

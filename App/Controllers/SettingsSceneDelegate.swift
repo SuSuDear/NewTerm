@@ -38,7 +38,7 @@ class SettingsSceneDelegate: UIResponder, UIWindowSceneDelegate, IdentifiableSce
 		window!.tintColor = .tint
 
 #if targetEnvironment(macCatalyst)
-		windowScene.title = "General"
+		windowScene.title = .localize("General")
 #else
 		windowScene.title = .localize("SETTINGS", comment: "Title of Settings page.")
 #endif
