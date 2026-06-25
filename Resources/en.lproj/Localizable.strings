@@ -78,5 +78,18 @@ You may need to review startup scripts or reinstall core packages to fix this is
 	<!-- Settings option to use the operating system’s locale. %@ is the user’s operating system language. -->
 	<key>LOCALE_SYSTEM</key>
 	<string>System Language: %@</string>
+	<key>UPDATE_AVAILABLE_MESSAGE</key>
+	<string>Version %@ is available to install. You’re currently using version %@.</string>
+
+	<key>PERFORMANCE_BATTERY_FOOTER</key>
+	<string>A lower refresh rate improves %@ battery life, but may cause the terminal display to feel sluggish.
+The Performance setting is recommended.</string>
+
+	<key>FONT_SIZE_FORMAT</key>
+	<string>Font Size: %d</string>
+
+	<key>SUPPORT_EMAIL_SUBJECT</key>
+	<string>NewTerm %@ – Support</string>
+
 </dict>
 </plist>

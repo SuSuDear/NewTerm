@@ -24,7 +24,7 @@ struct SponsorsView: View {
 	var body: some View {
 		if let sponsors = sponsors {
 			VStack(alignment: .leading, spacing: 10) {
-				Text("NewTerm is made available for free thanks to generous support from these fans:")
+				Text(String.localize("NewTerm is made available for free thanks to generous support from these fans:"))
 					.font(.system(size: 14, weight: .semibold))
 
 				Text(sponsors)

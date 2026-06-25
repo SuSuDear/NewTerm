@@ -355,5 +355,23 @@
 	<key>Reduce Performance in Low Power Mode</key>
 	<string>低电量模式下降低性能</string>
 
+	<key>Choose Font…</key>
+	<string>选择字体…</string>
+
+	<key>Font Size</key>
+	<string>字体大小</string>
+
+	<key>Sync path:</key>
+	<string>同步路径：</string>
+
+	<key>Tip Jar</key>
+	<string>打赏</string>
+
+	<key>Acknowledgements</key>
+	<string>致谢</string>
+
+	<key>SUPPORT_EMAIL_SUBJECT</key>
+	<string>NewTerm %@ – 支持</string>
+
 </dict>
 </plist>

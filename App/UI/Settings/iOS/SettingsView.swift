@@ -13,11 +13,11 @@ import NewTermCommon
 fileprivate extension KeyboardArrowsStyle {
 	var name: String {
 		switch self {
-		case .butterfly:   return "Butterfly"
-		case .scissor:     return "Scissor"
-		case .classic:     return "Classic"
-		case .vim:         return "Vim"
-		case .vimInverted: return "Vim Inverted"
+		case .butterfly:   return .localize("Butterfly")
+		case .scissor:     return .localize("Scissor")
+		case .classic:     return .localize("Classic")
+		case .vim:         return .localize("Vim")
+		case .vimInverted: return .localize("Vim Inverted")
 		}
 	}
 }
@@ -25,10 +25,10 @@ fileprivate extension KeyboardArrowsStyle {
 fileprivate extension KeyboardTrackpadSensitivity {
 	var name: String {
 		switch self {
-		case .off:    return "Off"
-		case .low:    return "Low"
-		case .medium: return "Medium"
-		case .high:   return "High"
+		case .off:    return .localize("Off")
+		case .low:    return .localize("Low")
+		case .medium: return .localize("Medium")
+		case .high:   return .localize("High")
 		}
 	}
 }

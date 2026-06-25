@@ -122,7 +122,7 @@ extension SettingsSceneDelegate: NSToolbarDelegate {
 	private func makeToolbarItem(itemIdentifier: NSToolbarItem.Identifier, label: String, icon: String, action: Selector) -> NSToolbarItem {
 		let configuration = UIImage.SymbolConfiguration(scale: .large)
 		let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-		item.label = label
+		item.label = .localize(label)
 		item.image = UIImage(systemName: icon, withConfiguration: configuration)
 		item.isNavigational = true
 		item.target = self

@@ -30,27 +30,27 @@ struct SettingsGeneralView: View {
 
 	var body: some View {
 		PreferencesList {
-			PreferencesGroup(header: Text("Bell"),
-											 footer: Text("When a terminal application needs to notify you of something, it rings the bell.")) {
-				Toggle("Make beep sound", isOn: preferences.$bellSound)
-				Toggle("Show heads-up display", isOn: preferences.$bellHUD)
+			PreferencesGroup(header: Text(String.localize("Bell")),
+											 footer: Text(String.localize("When a terminal application needs to notify you of something, it rings the bell."))) {
+				Toggle(String.localize("Make beep sound"), isOn: preferences.$bellSound)
+				Toggle(String.localize("Show heads-up display"), isOn: preferences.$bellHUD)
 			}
 
-			PreferencesGroup(header: Text("Settings Sync"),
-											 footer: Text("Keep your NewTerm settings in sync between your Mac, iPhone, and iPad by selecting iCloud sync. If you just want to keep a backup with a service such as Dropbox, select custom folder sync.")) {
+			PreferencesGroup(header: Text(String.localize("Settings Sync")),
+											 footer: Text(String.localize("Keep your NewTerm settings in sync between your Mac, iPhone, and iPad by selecting iCloud sync. If you just want to keep a backup with a service such as Dropbox, select custom folder sync."))) {
 				PreferencesPicker(selection: preferences.$preferencesSyncService,
-													label: Text("Sync app settings:")) {
-					Text("Don’t sync")
+													label: Text(String.localize("Sync app settings:"))) {
+					Text(String.localize("Don’t sync"))
 						.tag(PreferencesSyncService.none)
-					Text("via iCloud")
+					Text(String.localize("via iCloud"))
 						.tag(PreferencesSyncService.icloud)
-					Text("via custom folder")
+					Text(String.localize("via custom folder"))
 						.tag(PreferencesSyncService.folder)
 				}
 
 				HStack {
-					TextField("Sync path:", text: preferences.$preferencesSyncPath)
-					Button("Browse") {
+					TextField(String.localize("Sync path:"), text: preferences.$preferencesSyncPath)
+					Button(String.localize("Browse")) {
 						syncPathBrowsePresented.toggle()
 					}
 					.fileImporter(isPresented: $syncPathBrowsePresented,
@@ -61,7 +61,7 @@ struct SettingsGeneralView: View {
 				.disabled(preferences.preferencesSyncService != .folder)
 			}
 		}
-		.navigationBarTitle("General")
+		.navigationBarTitle(String.localize("General"))
 	}
 
 }

@@ -52,21 +52,21 @@ struct SettingsAdvancedView: View {
 			Text(item.name)
 		}
 		let localeName = preferences.preferredLocale == systemLocale.id
-			? Text("System Language")
+			? Text(String.localize("System Language"))
 			: Text(locales.first(where: { $0.id == preferences.preferredLocale })?.name ?? "")
 
 		return PreferencesList {
 			#if !targetEnvironment(macCatalyst)
 			PreferencesGroup {
 				NavigationLink(destination: SettingsPerformanceView(),
-											 label: { Text("Performance") })
+											 label: { Text(String.localize("Performance")) })
 			}
 			#endif
 
-			PreferencesGroup(header: Text("Locale"),
-											 footer: Text("NewTerm will ask terminal programs to use this locale. Not all programs support this. This will not apply to currently open tabs, and may be overridden by shell startup scripts.")) {
+			PreferencesGroup(header: Text(String.localize("Locale")),
+											 footer: Text(String.localize("NewTerm will ask terminal programs to use this locale. Not all programs support this. This will not apply to currently open tabs, and may be overridden by shell startup scripts."))) {
 				PreferencesPicker(selection: $preferences.preferredLocale,
-													label: Text("Language"),
+													label: Text(String.localize("Language")),
 													valueLabel: localeName,
 													asLink: true) {
 					Text(systemLocale.name)
@@ -81,7 +81,7 @@ struct SettingsAdvancedView: View {
 				#endif
 			}
 		}
-		.navigationBarTitle("Advanced")
+		.navigationBarTitle(String.localize("Advanced"))
 	}
 
 }

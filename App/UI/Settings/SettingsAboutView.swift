@@ -23,7 +23,7 @@ struct SettingsAboutView: View {
 	var body: some View {
 		var supportURL = URLComponents(string: "mailto:support@hbang.ws")!
 		supportURL.queryItems = [
-			URLQueryItem(name: "subject", value: "NewTerm \(version) – Support")
+			URLQueryItem(name: "subject", value: String(format: .localize("SUPPORT_EMAIL_SUBJECT"), version))
 		]
 
 		let guts = ScrollView {
@@ -37,13 +37,13 @@ struct SettingsAboutView: View {
 					.font(.system(size: 16, weight: .semibold))
 
 				VStack(alignment: .leading, spacing: 15) {
-					Text("This is a beta — thanks for trying it out! If you find any issues, please let us know.")
+					Text(String.localize("This is a beta — thanks for trying it out! If you find any issues, please let us know."))
 						.fixedSize(horizontal: false, vertical: true)
 						.padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
 						.font(.system(size: 14))
 
 					Link(destination: supportURL.url!,
-							 label: { Label(title: { Text("Email Support") },
+							 label: { Label(title: { Text(String.localize("Email Support")) },
 															icon: { IconView(icon: Image(systemName: .envelope).resizable(),
 																							 backgroundColor: .blue) }) })
 						.buttonStyle(GroupedButtonStyle())
@@ -56,13 +56,13 @@ struct SettingsAboutView: View {
 						.font(.system(size: 14))
 
 					Link(destination: URL(string: "https://hashbang.productions/donate/")!,
-							 label: { Label(title: { Text("Support NewTerm Development") },
+							 label: { Label(title: { Text(String.localize("Support NewTerm Development")) },
 															icon: { IconView(icon: Image(systemName: .heart).resizable(),
 																							 backgroundColor: .red) }) })
 						.buttonStyle(GroupedButtonStyle())
 
 					Button(action: { showingShare.toggle() },
-								 label: { Label(title: { Text("Share NewTerm") },
+								 label: { Label(title: { Text(String.localize("Share NewTerm")) },
 																icon: { IconView(icon: Image(systemName: .squareAndArrowUp).resizable(),
 																								 backgroundColor: .systemIndigo) }) })
 						.buttonStyle(GroupedButtonStyle())
@@ -77,7 +77,7 @@ struct SettingsAboutView: View {
 											 label: {
 					HStack {
 						Spacer()
-						Text("License & Acknowlegements")
+						Text(String.localize("License & Acknowlegements"))
 							.font(.system(size: 12))
 							.buttonStyle(PlainButtonStyle())
 						Spacer()
@@ -103,7 +103,7 @@ struct SettingsAboutView: View {
 					.buttonStyle(PlainButtonStyle())
 					.padding()
 
-				Text("Dedicated to Dennis Bednarz (2000 – 2019), a friend and visionary of the iOS community taken from us too soon.")
+				Text(String.localize("Dedicated to Dennis Bednarz (2000 – 2019), a friend and visionary of the iOS community taken from us too soon."))
 					.fixedSize(horizontal: false, vertical: true)
 					.frame(width: 260)
 					.foregroundColor(.secondary)

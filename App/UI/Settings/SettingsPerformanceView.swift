@@ -16,10 +16,10 @@ struct SettingsPerformanceView: View {
 	}
 
 	private let refreshRates = [
-		RefreshRate(rate:  15, name: "Power Saver"),
-		RefreshRate(rate:  30, name: "Balanced"),
-		RefreshRate(rate:  60, name: "Performance"),
-		RefreshRate(rate: 120, name: "Speed Demon")
+		RefreshRate(rate:  15, name: .localize("Power Saver")),
+		RefreshRate(rate:  30, name: .localize("Balanced")),
+		RefreshRate(rate:  60, name: .localize("Performance")),
+		RefreshRate(rate: 120, name: .localize("Speed Demon"))
 	].filter { item in item.rate <= UIScreen.main.maximumFramesPerSecond }
 
 	@ObservedObject var preferences = Preferences.shared
@@ -48,18 +48,18 @@ struct SettingsPerformanceView: View {
 
 	var body: some View {
 		let list = ForEach(refreshRates, id: \.rate) { item in
-			Text("\(item.rate) fps: \(String.localize(item.name))")
+			Text("\(item.rate) fps: \(item.name)")
 				.font(.body.monospacedDigit())
 		}
 
 		return PreferencesList {
 			PreferencesGroup(header: UIDevice.current.isPortable
-												? AnyView(Label(title: { Text("On AC Power") },
+												? AnyView(Label(title: { Text(String.localize("On AC Power")) },
 																				icon: { Image(systemName: .boltFill).imageScale(.medium) }))
-												: AnyView(Text("Refresh Rate")),
+												: AnyView(Text(String.localize("Refresh Rate"))),
 											 footer: UIDevice.current.isPortable
 												? AnyView(EmptyView())
-												: AnyView(Text("The Performance setting is recommended."))) {
+												: AnyView(Text(String.localize("The Performance setting is recommended.")))) {
 				PreferencesPicker(selection: $preferences.refreshRateOnAC,
 													label: EmptyView()) {
 					list
@@ -67,7 +67,7 @@ struct SettingsPerformanceView: View {
 			}
 
 			if UIDevice.current.isPortable {
-				PreferencesGroup(header: Label(title: { Text("On Battery") },
+				PreferencesGroup(header: Label(title: { Text(String.localize("On Battery")) },
 																			 icon: { Image(systemName: batteryImageName).imageScale(.medium) }),
 												 footer: Text(String(format: .localize("PERFORMANCE_BATTERY_FOOTER"), UIDevice.current.deviceModel))
 													.fixedSize(horizontal: false, vertical: true)) {
@@ -78,14 +78,14 @@ struct SettingsPerformanceView: View {
 					}
 
 				if #available(macOS 12, *) {
-					PreferencesGroup(footer: Text("Preserve battery life by switching to Power Saver when Low Power Mode is enabled.")) {
-						Toggle("Reduce Performance in Low Power Mode",
+					PreferencesGroup(footer: Text(String.localize("Preserve battery life by switching to Power Saver when Low Power Mode is enabled."))) {
+						Toggle(String.localize("Reduce Performance in Low Power Mode"),
 									 isOn: $preferences.reduceRefreshRateInLPM)
 					}
 				}
 			}
 		}
-		.navigationBarTitle("Performance")
+		.navigationBarTitle(String.localize("Performance"))
 	}
 
 }
