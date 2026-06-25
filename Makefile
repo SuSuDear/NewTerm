@@ -20,14 +20,17 @@ include $(THEOS)/makefiles/common.mk
 XCODEPROJ_NAME = NewTerm
 
 NewTerm_XCODE_SCHEME = NewTerm (iOS)
-NewTerm_XCODEFLAGS = INSTALL_PREFIX=$(INSTALL_PREFIX)
+
+# -------------------------------------------------------------------------
+# [修复]: 强制给 xcodebuild 注入 IPHONEOS_DEPLOYMENT_TARGET=14.0
+# 这会覆盖掉 Xcode 工程内部偷偷设定的 iOS 15.0 最低版本限制
+# -------------------------------------------------------------------------
+NewTerm_XCODEFLAGS = INSTALL_PREFIX=$(INSTALL_PREFIX) IPHONEOS_DEPLOYMENT_TARGET=14.0
+
 NewTerm_CODESIGN_FLAGS = -SApp/entitlements.plist
 NewTerm_INSTALL_PATH = $(INSTALL_PREFIX)/Applications
 
 include $(THEOS_MAKE_PATH)/xcodeproj.mk
-
-# before-package::
-# 	perl -i -pe s/iphoneos-arm/$(DEB_ARCH)/ $(THEOS_STAGING_DIR)/DEBIAN/control
 
 after-stage::
 	@$(TARGET_CODESIGN) $(NewTerm_CODESIGN_FLAGS) $(THEOS_STAGING_DIR)$(INSTALL_PREFIX)/Applications/NewTerm.app/NewTermLoginHelper

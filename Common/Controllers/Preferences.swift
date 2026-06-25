@@ -46,7 +46,26 @@ public class Preferences: NSObject, ObservableObject {
 		willSet { objectWillChange.send() }
 	}
 
+    // 已经在此处加上 public 修饰符，解决跨模块访问报错
+	@Published public var customBackgroundData: Data? {
+		didSet {
+			UserDefaults.standard.set(customBackgroundData, forKey: "customBackgroundData")
+            NotificationCenter.default.post(name: Preferences.didChangeNotification, object: nil)
+		}
+	}
+
+    // 已经在此处加上 public 修饰符，解决跨模块访问报错
+	@Published public var customBackgroundOpacity: Double {
+		didSet {
+			UserDefaults.standard.set(customBackgroundOpacity, forKey: "customBackgroundOpacity")
+            NotificationCenter.default.post(name: Preferences.didChangeNotification, object: nil)
+		}
+	}
+
 	override init() {
+		self.customBackgroundData = UserDefaults.standard.data(forKey: "customBackgroundData")
+		self.customBackgroundOpacity = UserDefaults.standard.object(forKey: "customBackgroundOpacity") as? Double ?? 1.0
+
 		super.init()
 
 		if let version = Bundle.main.infoDictionary!["CFBundleVersion"] as? String {
@@ -199,4 +218,3 @@ public class Preferences: NSObject, ObservableObject {
 	}
 
 }
-

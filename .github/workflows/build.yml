@@ -1,73 +1,82 @@
 name: CI
 
 on:
-  push:
-    paths-ignore:
-      - '.gitignore'
-      - '**/*.md'
-      - 'assets/**'
-  pull_request:
-    paths-ignore:
-      - '.gitignore'
-      - '**/*.md'
-      - 'assets/**'
   workflow_dispatch:
-
-env:
-  THEOS: ''
-  XCODE_VERSION: '15.4'
 
 jobs:
   build:
-    name: Build packages
+    name: Build (${{ matrix.scheme }})
     runs-on: macos-14
+    strategy:
+      matrix:
+        # 定义三种越狱环境：rootful（有根）、rootless（标准无根）、roothide（Roothide无根）
+        scheme: [rootful, rootless, roothide]
+      fail-fast: false
 
     steps:
-      - name: Setup Xcode version
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: ${{ env.XCODE_VERSION }}
-
-      - name: Install Homebrew dependencies
-        run: |
-          HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 brew install dpkg make ldid-procursus xz cmark
-          echo "$(brew --prefix make)/libexec/gnubin" >> $GITHUB_PATH
-
-      - name: Checkout roothide/theos
-        uses: actions/checkout@v4
-        with:
-          repository: roothide/theos
-          path: theos
-          submodules: recursive
-
-      - name: Add THEOS environment variables
-        run: |
-          rm -rf $GITHUB_WORKSPACE/theos/sdks
-          echo "THEOS=$GITHUB_WORKSPACE/theos" >> $GITHUB_ENV
-
-      - name: Checkout theos/sdks
-        uses: actions/checkout@v4
-        with:
-          repository: theos/sdks
-          ref: master
-          path: theos/sdks
-
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup build environment
-        run: |
-          echo "Available SDKs: $(find $THEOS/sdks -maxdepth 1 -name '*.sdk' -print)"
-          echo "FINALPACKAGE=1" >> $GITHUB_ENV
+      - name: Set up Procursus
+        uses: beerpiss/procursus-action@v2
+        with:
+          packages: ldid xz-utils cmark make
+          cache: true
+          cache-path: ~/__cache
 
-      - name: Build packages
+      - name: Set up Theos
         run: |
-          FINALPACKAGE=1 gmake clean package
-          ROOTLESS=1 FINALPACKAGE=1 gmake clean package
-          ROOTHIDE=1 FINALPACKAGE=1 gmake clean package
+          # Roothide 需要使用他们专门分叉修改的 Theos，而标准无根/有根使用官方 Theos 即可
+          if [ "${{ matrix.scheme }}" = "roothide" ]; then
+            git clone --recursive --depth=1 'https://github.com/roothide/theos.git' ~/theos
+          else
+            git clone --recursive --depth=1 'https://github.com/theos/theos.git' ~/theos
+          fi
 
-      - name: Upload artifacts
+      # --------------------------------------------------------
+      # [完美适配]: 利用 Clang 重载特性，生成支持所有类型的占位代码
+      # --------------------------------------------------------
+      - name: Patch out Roothide for Rootful and Rootless
+        run: |
+          if [ "${{ matrix.scheme }}" != "roothide" ]; then
+            echo "==> Patching roothide dependencies out for ${{ matrix.scheme }}..."
+            
+            # 1. 覆写 roothide.h，利用 __attribute__((overloadable)) 实现 C 语言级函数重载。
+            # 这能让 Swift 桥接时自动生成支持 String、char * 和 const char * 的多个函数版本，满足不同行的业务代码调用。
+            echo '#import <Foundation/Foundation.h>' > roothide.h
+            echo '__attribute__((overloadable)) static inline NSString * jbroot(NSString *path) { return path; }' >> roothide.h
+            echo '__attribute__((overloadable)) static inline char * jbroot(char *path) { return path; }' >> roothide.h
+            echo '__attribute__((overloadable)) static inline const char * jbroot(const char *path) { return path; }' >> roothide.h
+            echo '__attribute__((overloadable)) static inline NSString * rootfs(NSString *path) { return path; }' >> roothide.h
+            echo '__attribute__((overloadable)) static inline char * rootfs(char *path) { return path; }' >> roothide.h
+            echo '__attribute__((overloadable)) static inline const char * rootfs(const char *path) { return path; }' >> roothide.h
+            
+            # 2. 扫描并移除所有 Makefile 中的 -lroothide 链接标志，防止 dyld 闪退
+            find . -name "Makefile" -exec sed -i '' 's/-lroothide//g' {} +
+            
+            # 3. 移除可能强制开启的 ROOTHIDE=1 宏
+            find . -name "Makefile" -exec sed -i '' 's/-DROOTHIDE=1//g' {} +
+          fi
+
+      - name: Compile
+        id: package_build
+        run: |
+          # 统一指定架构为 arm64 和 arm64e
+          export ARCHS="arm64 arm64e"
+          
+          if [ "${{ matrix.scheme }}" = "rootful" ]; then
+            gmake package THEOS=~/theos
+          elif [ "${{ matrix.scheme }}" = "rootless" ]; then
+            gmake package THEOS=~/theos THEOS_PACKAGE_SCHEME=rootless
+          elif [ "${{ matrix.scheme }}" = "roothide" ]; then
+            gmake package THEOS=~/theos ROOTHIDE=1
+          fi
+          
+          echo "package=$(cat .theos/last_package)" >> $GITHUB_OUTPUT
+
+      - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: NewTerm3
-          path: packages/*.deb
+          # 动态命名 Artifact，防止三种包在上传时互相覆盖
+          name: NewTerm3-${{ matrix.scheme }}
+          path: '${{ steps.package_build.outputs.package }}'
